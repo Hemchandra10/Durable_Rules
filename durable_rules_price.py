@@ -6,11 +6,11 @@ df = pd.read_excel("/workspaces/Durable_Rules/rule2.xlsx")
 
 # Convert to list of dictionaries
 rules = df.to_dict(orient="records")
-print(rules)
+#print(rules)
 
 
 # Sort rules by the highest discount first
-rules.sort(key=lambda r: float(r["Action value"]) if r["Action Type"] == "Discount" else 1.0)
+#rules.sort(key=lambda r: float(r["Action Value"]) if r["Action Type"] == "Discount" else 1.0)
 
 # Define rulesets
 with ruleset("Discount"):
@@ -34,7 +34,7 @@ with ruleset("Discount"):
 
     # Add rules from Excel
     for rule in rules:
-        add_rule(rule["Rule Name"], rule["Condition"], rule["Operator"], rule["value"], rule["Action Type"], rule["Action value"])
+        add_rule(rule["Rule Name"], rule["Condition"], rule["Operator"], rule["value"], rule["Action Type"], rule["Action Value"])
 
 # -------------------- Testing the Rule Engine --------------------
 post("Discount", {"price": 1500, "medication": "Painkiller"})  # Should apply 10% discount
